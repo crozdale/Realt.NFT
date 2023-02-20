@@ -1,0 +1,7 @@
+/build
+/node_modules
+/migrations
+/test
+package-lock.json
+.secret
+.env
