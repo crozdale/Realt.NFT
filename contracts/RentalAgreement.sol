@@ -18,6 +18,8 @@ contract RentalAgreement {
 
     address public tenant;
 
+    address public arbitrator;
+
     enum State {Created, Started, Terminated}
     State public state;
 
@@ -37,6 +39,10 @@ contract RentalAgreement {
     }
     modifier onlyTenant() {
         if (msg.sender != tenant) throw;
+        _;
+    }
+    modifier onlyArbitrator() {
+        if (msg.sender != arbitrator) throw;
         _;
     }
     modifier inState(State _state) {
@@ -60,6 +66,10 @@ contract RentalAgreement {
 
     function getTenant() constant returns (address) {
         return tenant;
+    }
+
+    function getArbitrator() constant returns (address) {
+        return arbitrator;
     }
 
     function getRent() constant returns (uint) {
